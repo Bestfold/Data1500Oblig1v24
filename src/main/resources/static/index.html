@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="kinoBillett.js"></script>
+
+
+</head>
+<body>
+<header></header>
+<main>
+    <h1>Bestilling av kinobilletter</h1>
+
+    <!---Benytter flex for å få  <p> og <select> etter hverandre.--->
+    <form>
+        <label for="inputValgtFilm">Velg film</label>
+        <select id="inputValgtFilm">
+            <option>Pippi Langstrømpe 2: Dommedagen</option>
+            <option>Professor Cosmin og Cosmonautene</option>
+            <option>Oslo-Bergen med Bergensbanen 6t</option>
+            <option>Gamle damer som sparker fotball</option>
+            <option>Oslo-Bergen med den trans-Sibirske jernbane 238t</option>
+            <option>Subway Surfers Doom Scrolling 8t</option>
+            <option>Kristians 4-års bursdag (2002)</option>
+        </select>
+    </form>
+
+    <br>
+    <form>
+        <label for="inputAntall">Antall</label>
+        <input type="text" id="inputAntall" style="width: 5%">
+        <div id="errorManglerAntall" style="color: red"></div>
+    </form>
+    <br>
+
+    <!--- Input-felt for kontaktinfo legges inn i en tabell.-->
+    <table>
+        <tr>
+            <td></td>
+        </tr>
+        <tr>
+            <td><label for="inputFornavn">Fornavn</label></td>
+            <td><input type="text" id="inputFornavn"></td>
+            <td><div id="errorManglerFornavn" style="color: red"></div></td>
+        </tr>
+        <tr>
+            <td><label for="inputEtternavn">Etternavn</label></td>
+            <td><input type="text" id="inputEtternavn"></td>
+            <td><div id="errorManglerEtternavn" style="color: red"></div></td>
+        </tr>
+        <tr>
+            <td><label for="inputTelefonnr">Telefonnr</label></td>
+            <td><input type="text" id="inputTelefonnr"></td>
+            <td><div id="errorManglerTelefonnr" style="color: red"></div></td>
+        </tr>
+        <tr>
+            <td><label for="inputEpost">Epost</label></td>
+            <td><input type="text" id="inputEpost"></td>
+            <td><div id="errorManglerEpost" style="color: red"></div></td>
+        </tr>
+    </table>
+    <button onclick="createBestilling()">Kjøp billett</button>
+    <br>
+    <h2>Alle billetter</h2>
+    <br>
+
+    <!-- Bestile billetter legges til inn i tabellen med JavaScript-kode -->
+    <table id="tableShowAlleFilmer">
+
+    </table>
+
+    <br>
+    <button onclick="deleteAllBestillinger()">Slett alle billetter</button>
+</main>
+
+<footer></footer>
+</body>
+</html>
