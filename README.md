@@ -1,16 +1,3 @@
-
-
-Git-Brukernavn: Bestfold
-
-Laget i IntelliJ IDEA
-
-Instructions:
-Last ned og kjør på IntelliJ IDEA.
-
-Description:
-Benyttet for det meste javascript, men la til jQuery enkelte steder for enkelhet. Har latt de samme kodene i javascript stå kommentert ut der jQuery er brukt.
-
-
 # Data1700 Webprogrammering Oblig 1 
 ## Utgiver
 * OsloMet Brukernavn: s371394
@@ -22,7 +9,8 @@ Benyttet for det meste javascript, men la til jQuery enkelte steder for enkelhet
 * Beskrivelse av applikasjon:
 * Kinobillett-bestilling. Ved å velge film, antall billetter, skrive navn, telefonnr og epost kan man kjøpe billetten ved å trykke på "Kjøp billett".
 * Billetten blir lagt til i en array som printes. I tillegg kan lista over billetter slettes ved å trykke på "Slett alle billetter".
-* Inputvalidation gjøres med funksjoner.
+* Inputvalidation gjøres med funksjoner i JavaScript.
+* Benyttet for det meste ren javascript, men la til jQuery enkelte steder for enkelhet. Har latt de samme kodene i javascript stå kommentert ut der jQuery er brukt.
 
 
 ## Instruksjon:
