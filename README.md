@@ -1,4 +1,4 @@
-# Data1700 Webprogrammering Oblig 1 
+# Data1700 Webprogrammering Oblig 1-3 
 ## Utgiver
 * OsloMet Brukernavn: s371394
 * GitHub Brukernavn: Bestfold
