@@ -13,7 +13,11 @@
     <h1>Bestilling av kinobilletter</h1>
 
     <!---Benytter flex for å få  <p> og <select> etter hverandre.--->
-    <form>
+
+
+    <br>
+    <form id="kinoBillettForm">
+
         <label for="inputValgtFilm">Velg film</label>
         <select id="inputValgtFilm">
             <option>Pippi Langstrømpe 2: Dommedagen</option>
@@ -24,43 +28,44 @@
             <option>Subway Surfers Doom Scrolling 8t</option>
             <option>Kristians 4-års bursdag (2002)</option>
         </select>
-    </form>
 
-    <br>
-    <form>
+
         <label for="inputAntall">Antall</label>
-        <input type="text" id="inputAntall" style="width: 5%">
-        <div id="errorManglerAntall" style="color: red"></div>
-    </form>
-    <br>
+        <input type="text" required id="inputAntall" style="width: 5%" pattern="^[[0-9]{1,3}"
+               title="Vennligst velg et gyldig antall billetter.">
 
-    <!--- Input-felt for kontaktinfo legges inn i en tabell.-->
-    <table>
-        <tr>
-            <td></td>
-        </tr>
-        <tr>
-            <td><label for="inputFornavn">Fornavn</label></td>
-            <td><input type="text" id="inputFornavn"></td>
-            <td><div id="errorManglerFornavn" style="color: red"></div></td>
-        </tr>
-        <tr>
-            <td><label for="inputEtternavn">Etternavn</label></td>
-            <td><input type="text" id="inputEtternavn"></td>
-            <td><div id="errorManglerEtternavn" style="color: red"></div></td>
-        </tr>
-        <tr>
-            <td><label for="inputTelefonnr">Telefonnr</label></td>
-            <td><input type="text" id="inputTelefonnr"></td>
-            <td><div id="errorManglerTelefonnr" style="color: red"></div></td>
-        </tr>
-        <tr>
-            <td><label for="inputEpost">Epost</label></td>
-            <td><input type="text" id="inputEpost"></td>
-            <td><div id="errorManglerEpost" style="color: red"></div></td>
-        </tr>
-    </table>
-    <button onclick="createBestilling()">Kjøp billett</button>
+
+        <!--- Input-felt for kontaktinfo legges inn i en tabell.-->
+        <table>
+            <tr>
+                <td></td>
+            </tr>
+            <tr>
+                <td><label for="inputFornavn">Fornavn</label></td>
+                <td><input type="text" required id="inputFornavn" pattern="[a-zæøåA-ZÆØÅ]"
+                           title="Vennligst skriv et gyldig navn."></td>></td>
+            </tr>
+            <tr>
+                <td><label for="inputEtternavn">Etternavn</label></td>
+                <td><input type="text" required id="inputEtternavn" pattern="[a-zæøåA-ZÆØÅ]"
+                           title="Vennligst skriv et gyldig navn."></td>
+            </tr>
+            <tr>
+                <td><label for="inputTelefonnr">Telefonnr</label></td>
+                <td><input type="text" required id="inputTelefonnr" pattern="[0-9]{8}"
+                           title="Vennligst skriv et gyldig telefonnummer."></td>
+            </tr>
+            <tr>
+                <td><label for="inputEpost">Epost</label></td>
+                <td><input type="text" required id="inputEpost"
+                           pattern="[a-zæøåA-ZÆØÅ0-9._]+@[a-zæøåA-ZÆØÅ]{2,}.[a-zæøåA-ZÆØÅ]{2,}"
+                           title="Vennligst skriv en gyldig epost-adresse"></td>
+            </tr>
+        </table>
+        <button type="submit">Kjøp billett</button>
+    </form>
+
+    <br>
     <br>
     <h2>Alle billetter</h2>
     <br>

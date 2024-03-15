@@ -9,6 +9,35 @@ $(function () {
 let bestillingerArray = [];
 
 
+let registerForm = document.getElementById("kinoBillettForm");
+registerForm.addEventListener('submit', function(event){
+    event.preventDefault();
+
+    let inputFilm = $("#inputValgtFilm").val();
+    let inputAntall = $("#inputAntall").val();
+    let inputFornavn = $("#inputFornavn").val();
+    let inputEtternavn = $("#inputEtternavn").val();
+    let inputTelefonnr = $("#inputTelefonnr").val();
+    let inputEpost = $("#inputEpost").val();
+
+    let billettÅRegistrere = {
+        film: inputFilm,
+        antall: inputAntall,
+        fornavn: inputFornavn,
+        etternavn: inputEtternavn,
+        telefonNr: inputTelefonnr,
+        epost: inputEpost
+    }
+
+    console.log(billettÅRegistrere);
+});
+
+
+
+
+
+/*
+
 // Kaller alle check-funksjoner, oppretter billett-objekt og legger til i bestillingerArray.
 // Fjerner all tekst fra felt ved trykk, slik at ny bestilling kan legges til.
 function createBestilling () {
@@ -160,3 +189,4 @@ function checkInputEpost () {
         return inputEpost;
     }
 }
+*/

@@ -1,3 +1,13 @@
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+
+// Lager konstruktører og get-set-ere.
+//@NoArgsConstructor
+//@AllArgsConstructor
+//@Data
+
 public class KinoBillett {
     private String film;
     private int antall;
