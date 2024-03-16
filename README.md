@@ -8,9 +8,10 @@
 ## Info om prosjektet
 * Beskrivelse av applikasjon:
 * Kinobillett-bestilling. Ved å velge film, antall billetter, skrive navn, telefonnr og epost kan man kjøpe billetten ved å trykke på "Kjøp billett".
-* Billetten blir lagt til i en array som printes. I tillegg kan lista over billetter slettes ved å trykke på "Slett alle billetter".
-* Inputvalidation gjøres med funksjoner i JavaScript.
-* Benyttet for det meste ren javascript, men la til jQuery enkelte steder for enkelhet. Har latt de samme kodene i javascript stå kommentert ut der jQuery er brukt.
+* Inputvalidation gjøres med pattern attributt i input html-taggen.
+* Billetten omgjort til et JSON-vennlig objekt, og så sendt til serveren. På serveren legges objektet til i et array.
+* Alle registrerte tabeller vises -> Når man legget til eller fjerner fra arrayet vil arrayet sendes til klienten og innholdet vises i en tabell.
+* I tillegg kan arrayet tømmes ved å trykke på "Slett alle billetter".
 
 
 ## Instruksjon:
