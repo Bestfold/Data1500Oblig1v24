@@ -1,3 +1,6 @@
+package com.example.data1500oblig1v24;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -8,6 +11,7 @@ import lombok.NoArgsConstructor;
 //@AllArgsConstructor
 //@Data
 
+
 public class KinoBillett {
     private String film;
     private int antall;
@@ -17,7 +21,10 @@ public class KinoBillett {
     private String epost;
 
 
-    // Konstruktør for KinoBillett-objektet.
+    // Konstruktører for com.example.data1500oblig1v24.KinoBillett-objektet.
+
+    public KinoBillett(){};
+
     public KinoBillett(String film, int antall, String fornavn, String etternavn, String telefonNr, String epost) {
         this.film = film;
         this.antall = antall;
@@ -72,13 +79,13 @@ public class KinoBillett {
     }
 
 
-    // toString() for KinoBillett
+    // toString() for com.example.data1500oblig1v24.KinoBillett
     @Override
     public String toString() {
         String utString = "";
 
-        utString += "Film: "+film+"\tAntall: "+antall+"\tFornanv"+fornavn+"\tEtternavn"+etternavn+
-                "\tTelefonNr"+telefonNr+"\tEpost";
+        utString += "Film: "+film+"\tAntall: "+antall+"\tFornavn: "+fornavn+"\tEtternavn: "
+                +etternavn+"\tTelefonNr: "+telefonNr+"\tEpost: "+epost;
 
         return utString;
     }
