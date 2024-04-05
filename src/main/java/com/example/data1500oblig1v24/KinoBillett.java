@@ -1,6 +1,11 @@
 package com.example.data1500oblig1v24;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.annotation.EnumNaming;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -11,8 +16,14 @@ import lombok.NoArgsConstructor;
 //@AllArgsConstructor
 //@Data
 
-
+@Entity
+@Table(name="kinobillett")
 public class KinoBillett {
+
+    @Id
+    @GeneratedValue
+    private long id;
+
     private String film;
     private int antall;
     private String fornavn;
@@ -21,11 +32,14 @@ public class KinoBillett {
     private String epost;
 
 
+
+
     // Konstruktører for com.example.data1500oblig1v24.KinoBillett-objektet.
 
     public KinoBillett(){};
 
-    public KinoBillett(String film, int antall, String fornavn, String etternavn, String telefonNr, String epost) {
+    public KinoBillett(long id, String film, int antall, String fornavn, String etternavn, String telefonNr, String epost) {
+        this.id = id;
         this.film = film;
         this.antall = antall;
         this.fornavn = fornavn;
@@ -34,7 +48,15 @@ public class KinoBillett {
         this.epost = epost;
     }
 
+
     // Get- Set-metoder
+
+    public long getId() {
+        return id;
+    }
+    public void setId(long id) {
+        this.id = id;
+    }
 
     public String getFilm() {
         return film;
