@@ -1,6 +1,9 @@
 package com.example.data1500oblig1v24;
 
+import com.sun.source.tree.TryTree;
 import jakarta.annotation.PostConstruct;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.web.bind.annotation.*;
 
 // REST-controller til å styre get- og post-mappings.
@@ -10,6 +13,9 @@ public class KinoBillettController {
     KinoBillett[] registrerteBilletter;
     String[] tilgjengeligeFilmer;
 
+    // Initierer JDBC
+    @Autowired
+    private JdbcTemplate jdbcTemplate;
 
     // Ved initiering av kontroller initieres også arrayene, og filmer array fylles med elementer.
     @PostConstruct
@@ -40,6 +46,17 @@ public class KinoBillettController {
                 break;
             }
         }
+
+        try {
+            String sql = "insert into KinoBillett (FILM, ANTALL, FORNAVN, " +
+                    "ETTERNAVN, TELEFON_NR, EPOST) values (?,?,?,?,?,?)";
+            jdbcTemplate.update(sql, kinoBillett.getFilm(), kinoBillett.getAntall(),
+                    kinoBillett.getFornavn(), kinoBillett.getEtternavn(),
+                    kinoBillett.getTelefonNr(), kinoBillett.getEpost());
+
+        } catch (Exception e1) {
+            System.out.println("SQL-spørring feilet: "+e1);
+        }
     }
 
     @GetMapping("/getRegistrerteBilletter")
@@ -55,4 +72,6 @@ public class KinoBillettController {
         }
         System.out.println("Alle registrerte billetter slettet");
     }
+
+
 }
