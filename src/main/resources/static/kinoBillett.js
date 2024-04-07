@@ -1,7 +1,8 @@
 // JavaScript-fil for behandling av kino-billett bestillinger. Oblig 1. - 06.02.2024 - s371394
 
 // Funksjonen kalles når siden er lastet inn.:
-$(function () {
+$(function ()
+{
     console.log("Ready");
 
     // Henter og viser alle registrerte filmer som en option under filmer.
@@ -9,7 +10,8 @@ $(function () {
 
     // Funksjonalitet ved submit av form. Konstruering av kinobillett og post.
     let registerForm = document.getElementById("kinoBillettForm");
-    registerForm.addEventListener('submit', function(event){
+    registerForm.addEventListener('submit', function(event)
+    {
 
         // Prevents reload on submit
         event.preventDefault();
@@ -44,10 +46,13 @@ $(function () {
     });
 })
 
-function postBestillingToServer (billettToSend) {
-    if (billettToSend != null) {
+function postBestillingToServer (billettToSend)
+{
+    if (billettToSend != null)
+    {
         $.post("http://localhost:8080/postKinoBillett", billettToSend)
-            .done(function() {
+            .done(function()
+            {
                 // Passer på å ikke kalle funksjonen før det asynkrone kallet er gjennomført.
                 showAlleBestillinger();
             })
@@ -55,14 +60,19 @@ function postBestillingToServer (billettToSend) {
 }
 
 // Kalles ved hver "endring". Henter arrayet og lister elementer på siden.
-function showAlleBestillinger() {
+function showAlleBestillinger()
+{
     let alleBestillingerHtmlText = "<tr><th>Film</th><th>Antall</th><th>Fornavn</th>" +
         "<th>Etternavn</th><th>Telefonnr</th><th>Epost</th></tr>"
 
-    $.get("http://localhost:8080/getRegistrerteBilletter", function(data) {
-        if (Array.isArray(data)) {
-            data.forEach(function(billett) {
-                if(billett) {
+    $.get("http://localhost:8080/getRegistrerteBilletter", function(data)
+    {
+        if (Array.isArray(data))
+        {
+            data.forEach(function(billett)
+            {
+                if(billett)
+                {
                     alleBestillingerHtmlText += "<tr><td>" + billett.film + "</td>" +
                         "<td>" + billett.antall + "</td><td>" + billett.fornavn + "</td>" +
                         "<td>" + billett.etternavn + "</td><td>" + billett.telefonNr + "</td>"
@@ -76,18 +86,23 @@ function showAlleBestillinger() {
 }
 
 // Sender instruksjon om å slette alle array-elementer på server.
-function deleteAllBilletterOnServer() {
+function deleteAllBilletterOnServer()
+{
     $.get("http://localhost:8080/getDeleteAllRegistrerteBilletter");
     console.log("Instruks om å slette alle billetter sendt.")
     showAlleBestillinger();
 }
 
-function getFilmOptionsFromServer() {
+function getFilmOptionsFromServer()
+{
     // Henter tilgjengelige filmer og befolker film-options.
-    $.get("http://localhost:8080/getTilgjengeligeFilmer", function(data) {
+    $.get("http://localhost:8080/getTilgjengeligeFilmer", function(data)
+    {
         let optionsFilm = document.getElementById("inputValgtFilm");
-        data.forEach(function(film) {
-            if (film != null) {
+        data.forEach(function(film)
+        {
+            if (film != null)
+            {
                 optionsFilm.innerHTML += "<option>"+film+"</option>";
             }
         })

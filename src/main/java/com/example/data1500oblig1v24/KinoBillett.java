@@ -15,7 +15,8 @@ import lombok.NoArgsConstructor;
 
 //@Entity
 //@Table(name="kinobillett")
-public class KinoBillett {
+public class KinoBillett
+{
 
     //@Id
     //@GeneratedValue(strategy = GenerationType.AUTO) // Genererer automatisk PK.
@@ -35,7 +36,8 @@ public class KinoBillett {
 
     public KinoBillett(){};
 
-    public KinoBillett(String film, int antall, String fornavn, String etternavn, String telefonNr, String epost) {
+    public KinoBillett(String film, int antall, String fornavn, String etternavn, String telefonNr, String epost)
+    {
         //this.id = id;
         this.film = film;
         this.antall = antall;
@@ -95,7 +97,8 @@ public class KinoBillett {
 
     // toString() for com.example.data1500oblig1v24.KinoBillett
     @Override
-    public String toString() {
+    public String toString()
+    {
         String utString = "";
 
         utString +=  "Film: "+film+"\tAntall: "+antall+"\tFornavn: "+

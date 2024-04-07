@@ -1,4 +1,5 @@
-create table KinoBillett (
+create table KinoBillett
+(
                              id bigint auto_increment primary key,
                              film varchar(255),
                              antall int,
@@ -8,7 +9,8 @@ create table KinoBillett (
                              epost varchar(255)
 );
 
-create table TilgjengeligeFilmer (
+create table TilgjengeligeFilmer
+(
                                      id bigint auto_increment primary key,
                                      film varchar(255)
 );

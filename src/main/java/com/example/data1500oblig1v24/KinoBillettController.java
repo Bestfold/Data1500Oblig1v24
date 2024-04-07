@@ -3,14 +3,18 @@ package com.example.data1500oblig1v24;
 import com.sun.source.tree.TryTree;
 import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 // REST-controller til å styre get- og post-mappings.
 @RestController
-public class KinoBillettController {
+public class KinoBillettController
+{
 
-    KinoBillett[] registrerteBilletter;
+    List<KinoBillett> registrerteBilletter;
     String[] tilgjengeligeFilmer;
 
     // Initierer JDBC
@@ -19,8 +23,9 @@ public class KinoBillettController {
 
     // Ved initiering av kontroller initieres også arrayene, og filmer array fylles med elementer.
     @PostConstruct
-    public void oppstart() {
-        registrerteBilletter = new KinoBillett[10];
+    public void oppstart()
+    {
+        //registrerteBilletter = new KinoBillett[10];
 
         tilgjengeligeFilmer = new String[10];
         tilgjengeligeFilmer[0] = "Pippi Langstrømpe 2: Dommedagen";
@@ -38,38 +43,72 @@ public class KinoBillettController {
     }
 
     @PostMapping("/postKinoBillett")
-    public void opprettBillett (KinoBillett kinoBillett) {
+    public void opprettBillett (KinoBillett kinoBillett)
+    {
         System.out.println(kinoBillett.toString());
-        for (int i = 0; i < registrerteBilletter.length; i++) {
-            if (registrerteBilletter[i] == null) {
+        /*
+        for (int i = 0; i < registrerteBilletter.length; i++)
+        {
+            if (registrerteBilletter[i] == null)
+            {
                 registrerteBilletter[i] = kinoBillett;
                 break;
             }
         }
-
-        try {
+        */
+        // Sende billett til db med JDBC.
+        try
+        {
             String sql = "insert into KinoBillett (FILM, ANTALL, FORNAVN, " +
                     "ETTERNAVN, TELEFON_NR, EPOST) values (?,?,?,?,?,?)";
             jdbcTemplate.update(sql, kinoBillett.getFilm(), kinoBillett.getAntall(),
                     kinoBillett.getFornavn(), kinoBillett.getEtternavn(),
                     kinoBillett.getTelefonNr(), kinoBillett.getEpost());
 
-        } catch (Exception e1) {
+        }
+        catch (Exception e1)
+        {
             System.out.println("SQL-spørring feilet: "+e1);
         }
     }
 
+    // Hent registrerte billetter fra db og send dem til view.
     @GetMapping("/getRegistrerteBilletter")
-    public KinoBillett[] sendBilletter () {
-        return registrerteBilletter;
+    public List<KinoBillett> sendBilletter () {
+        try
+        {
+            String sql = "select * from KinoBillett";
+            registrerteBilletter = jdbcTemplate.query(sql, new BeanPropertyRowMapper(KinoBillett.class));
+            return registrerteBilletter;
+
+        }
+        catch (Exception e1) {
+            System.out.println("Select reg. billetter fra db mislyktes: "+e1);
+            List<KinoBillett> tomListe = null;
+            return tomListe;
+        }
     }
 
     // Sletter alle lagrede elementer i billett-registeret.
     @GetMapping("/getDeleteAllRegistrerteBilletter")
     public void deleteAllBilletter() {
+
+        try
+        {
+            String sql = "delete from KinoBillett";
+            jdbcTemplate.update(sql);
+        }
+        catch (Exception e1)
+        {
+            System.out.println("Delete alle reg. billetter mislykket: "+e1);
+        }
+
+        /*
         for (int i = 0; i < registrerteBilletter.length; i++) {
             registrerteBilletter[i] = null;
         }
+         */
+
         System.out.println("Alle registrerte billetter slettet");
     }
 
