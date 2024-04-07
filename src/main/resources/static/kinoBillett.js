@@ -104,13 +104,16 @@ function getFilmOptionsFromServer()
     // Henter tilgjengelige filmer og befolker film-options.
     $.get("http://localhost:8080/getTilgjengeligeFilmer", function(data)
     {
-        let optionsFilm = document.getElementById("inputValgtFilm");
-        data.forEach(function(film)
+        if (Array.isArray(data))
         {
-            if (film != null)
+            let optionsFilm = document.getElementById("inputValgtFilm");
+            data.forEach(function(film)
             {
-                optionsFilm.innerHTML += "<option>"+film+"</option>";
-            }
-        })
+                if (film != null)
+                {
+                    optionsFilm.innerHTML += "<option>"+film+"</option>";
+                }
+            })
+        }
     })
 }

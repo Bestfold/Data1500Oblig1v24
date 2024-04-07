@@ -14,7 +14,7 @@ public class KinoBillettController
 {
 
     List<KinoBillett> registrerteBilletter;
-    String[] tilgjengeligeFilmer;
+    List<String> tilgjengeligeFilmer;
 
     // Initierer JDBC
     @Autowired
@@ -25,7 +25,7 @@ public class KinoBillettController
     public void oppstart()
     {
         //registrerteBilletter = new KinoBillett[10];
-
+        /*
         tilgjengeligeFilmer = new String[10];
         tilgjengeligeFilmer[0] = "Pippi Langstrømpe 2: Dommedagen";
         tilgjengeligeFilmer[1] = "Professor Cosmin og Cosmonautene";
@@ -34,10 +34,23 @@ public class KinoBillettController
         tilgjengeligeFilmer[4] = "Oslo-Bergen med den trans-Sibirske jernbane 238t";
         tilgjengeligeFilmer[5] = "Subway Surfers Doom Scrolling 8t";
         tilgjengeligeFilmer[6] = "Kristians 4-års bursdag (2002)";
+         */
     }
 
     @GetMapping("/getTilgjengeligeFilmer")
-    public String[] getFilmer() {
+    public List<String> getFilmer()
+    {
+        // Henter lagrede tilgjengelige filmer fra db-tabell.
+        try
+        {
+            String sql = "select * from TilgjengeligeFilmer";
+            jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(String.class));
+        }
+        catch (Exception e1)
+        {
+            System.out.println("Henting av tilgjengelige filmer feilet"+e1);
+        }
+
         return tilgjengeligeFilmer;
     }
 
@@ -45,16 +58,7 @@ public class KinoBillettController
     public void opprettBillett (KinoBillett kinoBillett)
     {
         System.out.println(kinoBillett.toString());
-        /*
-        for (int i = 0; i < registrerteBilletter.length; i++)
-        {
-            if (registrerteBilletter[i] == null)
-            {
-                registrerteBilletter[i] = kinoBillett;
-                break;
-            }
-        }
-        */
+
         // Sende billett til db med JDBC.
         try
         {
@@ -76,7 +80,7 @@ public class KinoBillettController
     public List<KinoBillett> getBilletter() {
         try
         {
-            String sql = "select * from KinoBillett";
+            String sql = "select * from KinoBillett order by etternavn";
             registrerteBilletter = jdbcTemplate.query(sql, new BeanPropertyRowMapper(KinoBillett.class));
             return registrerteBilletter;
 
@@ -92,7 +96,6 @@ public class KinoBillettController
     @GetMapping("/getDeleteAllRegistrerteBilletter")
     public void deleteAllBilletter()
     {
-
         try
         {
             // Tømmer List<>

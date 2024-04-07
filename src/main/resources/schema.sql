@@ -11,6 +11,5 @@ create table KinoBillett
 
 create table TilgjengeligeFilmer
 (
-                                     id bigint auto_increment primary key,
-                                     film varchar(255)
+                                     film varchar(255) primary key
 );
