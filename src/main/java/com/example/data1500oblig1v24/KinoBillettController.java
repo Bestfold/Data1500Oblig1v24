@@ -1,6 +1,5 @@
 package com.example.data1500oblig1v24;
 
-import com.sun.source.tree.TryTree;
 import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
@@ -74,7 +73,7 @@ public class KinoBillettController
 
     // Hent registrerte billetter fra db og send dem til view.
     @GetMapping("/getRegistrerteBilletter")
-    public List<KinoBillett> sendBilletter () {
+    public List<KinoBillett> getBilletter() {
         try
         {
             String sql = "select * from KinoBillett";
@@ -91,12 +90,19 @@ public class KinoBillettController
 
     // Sletter alle lagrede elementer i billett-registeret.
     @GetMapping("/getDeleteAllRegistrerteBilletter")
-    public void deleteAllBilletter() {
+    public void deleteAllBilletter()
+    {
 
         try
         {
+            // Tømmer List<>
+            registrerteBilletter.clear();
+
             String sql = "delete from KinoBillett";
+
+            // Sender sql-kommando.
             jdbcTemplate.update(sql);
+            System.out.println("Alle registrerte billetter slettet");
         }
         catch (Exception e1)
         {
@@ -108,9 +114,5 @@ public class KinoBillettController
             registrerteBilletter[i] = null;
         }
          */
-
-        System.out.println("Alle registrerte billetter slettet");
     }
-
-
 }

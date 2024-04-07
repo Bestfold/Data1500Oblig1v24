@@ -88,9 +88,15 @@ function showAlleBestillinger()
 // Sender instruksjon om å slette alle array-elementer på server.
 function deleteAllBilletterOnServer()
 {
-    $.get("http://localhost:8080/getDeleteAllRegistrerteBilletter");
-    console.log("Instruks om å slette alle billetter sendt.")
-    showAlleBestillinger();
+    $.get("http://localhost:8080/getDeleteAllRegistrerteBilletter")
+
+        // Siden $.get er asynkron benyttes .done for å sørge for at registrerte billetter
+        // vises ETTER at server har fått utført get-requesten.
+        .done(function()
+            {
+            console.log("Instruks om å slette alle billetter sendt.");
+            showAlleBestillinger();
+           });
 }
 
 function getFilmOptionsFromServer()
