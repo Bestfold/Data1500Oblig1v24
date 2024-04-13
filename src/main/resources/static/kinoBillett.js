@@ -102,7 +102,7 @@ function deleteAllBilletterOnServer()
 function getFilmOptionsFromServer()
 {
     // Henter tilgjengelige filmer og befolker film-options.
-    $.get("http://localhost:8080/getTilgjengeligeFilmer", function(data)
+    $.get("http://localhost:8080/getAvailableFilms", function(data)
     {
         if (Array.isArray(data))
         {

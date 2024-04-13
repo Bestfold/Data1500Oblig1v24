@@ -9,7 +9,7 @@ create table KinoBillett
                              epost varchar(255)
 );
 
-create table TilgjengeligeFilmer
+create table AvailableFilms
 (
                                      film varchar(255) primary key
 );
