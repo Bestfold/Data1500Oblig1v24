@@ -17,23 +17,44 @@ public class AvailableFilmsRepository
     JdbcTemplate jdbcTemplate;
 
 
-    class AvailableFilmsRowMapper implements RowMapper<String>
+    class AvailableFilmsRowMapper implements RowMapper<AvailableFilms>
     {
         // RowMapper for String: AvailableFilms
         @Override
-        public String mapRow(ResultSet rs, int rowNum) throws SQLException
+        public AvailableFilms mapRow(ResultSet rs, int rowNum) throws SQLException
         {
-            return rs.getString("film");
+            AvailableFilms availableFilms = new AvailableFilms();
+            availableFilms.setFilm(rs.getString("film"));
+            availableFilms.setTitleSimple(rs.getString("titleSimple"));
+            availableFilms.setHours(rs.getInt("hours"));
+            availableFilms.setImageUrl(rs.getString("imageUrl"));
+            return availableFilms;
         }
     }
 
     // Finds all films from DB.
-    public List<String> findAllAvailableFilms()
+    public List<AvailableFilms> findAllAvailableFilms()
     {
         try
         {
             String sql = "select * from AvailableFilms";
             return jdbcTemplate.query(sql, new AvailableFilmsRowMapper());
+        }
+        catch (Exception e)
+        {
+            System.out.println("SQL Query failed with exception: "+e);
+            return null;
+        }
+    }
+
+    // Finds a film from DB based on attribute titleSimple.
+    public AvailableFilms findAvailableFilmByTitleSimple (String titleSimple)
+    {
+        try
+        {
+            String sql = "select * from AvailableFilms where titleSimple = ?";
+            return jdbcTemplate.queryForObject(sql, new Object[]{titleSimple},
+                    new AvailableFilmsRowMapper());
         }
         catch (Exception e)
         {

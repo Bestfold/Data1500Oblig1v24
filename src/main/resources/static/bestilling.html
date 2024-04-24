@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bestilling</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="kinoBillett.js"></script>
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+<body style="background-color: dimgray">
+
+<header></header>
+
+<main class="container" style="background-color: white;">
+    <div id="filmPortrayal"></div>
+
+    <form id="kinoBillettForm" >
+        <h3>Bestilling av kinobilletter</h3>
+        <br>
+        <!--- Form for ordering tickets.-->
+        <table>
+            <tr>
+                <td><label for="inputAntall">Antall</label></td>
+                <td><input type="text" required id="inputAntall" style="width: 20%" pattern="^[0-9]{1,3}"
+                           title="Vennligst velg et gyldig antall billetter."></td>
+            </tr>
+            <tr>
+                <td><label for="inputFornavn">Fornavn</label></td>
+                <td><input type="text" required id="inputFornavn" pattern="[a-zæøåA-ZÆØÅ]{2,16}"
+                           title="Vennligst skriv et gyldig navn."></td>
+            </tr>
+            <tr>
+                <td><label for="inputEtternavn">Etternavn</label></td>
+                <td><input type="text" required id="inputEtternavn" pattern="[a-zæøåA-ZÆØÅ]{2,16}"
+                           title="Vennligst skriv et gyldig navn."></td>
+            </tr>
+            <tr>
+                <td><label for="inputTelefonnr">Telefonnr</label></td>
+                <td><input type="text" required id="inputTelefonnr" pattern="[0-9]{8}"
+                           title="Vennligst skriv et gyldig telefonnummer."></td>
+            </tr>
+            <tr>
+                <td><label for="inputEpost">Epost</label></td>
+                <td><input type="text" required id="inputEpost"
+                           pattern="[a-zæøåA-ZÆØÅ0-9._]+@[a-zæøåA-ZÆØÅ]{2,}.[a-zæøåA-ZÆØÅ]{2,}"
+                           title="Vennligst skriv en gyldig epost-adresse"></td>
+            </tr>
+        </table>
+        <button class="btn btn-primary" type="submit">Kjøp billett</button>
+    </form>
+
+    <br>
+
+    <div class="container">
+        <h2>Alle billetter</h2>
+
+        <!-- Ordered tickets registered in DB populate this table. -->
+        <table class="table table-striped table-bordered" id="tableShowAllBilletter">
+
+        </table>
+
+        <br>
+        <button class="btn btn-danger" onclick="deleteAllBilletterOnServer()">
+            Slett alle billetter</button>
+    </div>
+
+
+</main>
+
+<footer></footer>
+
+</body>
+</html>

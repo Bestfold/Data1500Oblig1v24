@@ -51,6 +51,22 @@ public class KinoBillettRepository
         }
     }
 
+    // Finds KinoBillett by id.
+    public KinoBillett findKinoBillettById (long id)
+    {
+        try
+        {
+            String sql = "select * from KinoBillett where id = ?";
+            return jdbcTemplate.queryForObject(sql, new Object[]{id},
+                    new KinoBillettRowMapper());
+        }
+        catch (Exception e)
+        {
+            System.out.println("SQL Query failed with exception: "+e);
+            return null;
+        }
+    }
+
     // Inserts KinoBillett into DB.
     public void insertKinoBillett (KinoBillett kinoBillett)
     {
@@ -58,6 +74,7 @@ public class KinoBillettRepository
         {
             String sql = "insert into KinoBillett(FILM, ANTALL, FORNAVN, ETTERNAVN," +
                     " TELEFON_NR, EPOST) values(?,?,?,?,?,?)";
+
             jdbcTemplate.update(sql,kinoBillett.getFilm(), kinoBillett.getAntall(),
                     kinoBillett.getFornavn(), kinoBillett.getEtternavn(),
                     kinoBillett.getTelefonNr(), kinoBillett.getEpost());
@@ -68,8 +85,44 @@ public class KinoBillettRepository
         }
     }
 
+    // Updates an existing KinoBillett with provided KinoBillett
+    public void updateKinoBillett (KinoBillett editedBillett)
+    {
+        {
+            try
+            {
+                String sql = "UPDATE KinoBillett SET film = ?, antall = ?, " +
+                        "fornavn = ?, etternavn = ?, telefon_nr = ?, epost = ? where id = ?";
+
+                jdbcTemplate.update(sql, editedBillett.getFilm(), editedBillett.getAntall(),
+                        editedBillett.getFornavn(), editedBillett.getEtternavn(),
+                        editedBillett.getTelefonNr(), editedBillett.getEpost(), editedBillett.getId());
+            }
+            catch (Exception e)
+            {
+                System.out.println("SQL Insert failed with exception: "+e);
+            }
+        }
+    }
+
+
+    // Deletes KinoBillett in DB based on Id
+    public void deleteKinoBillettById (long id)
+    {
+        try
+        {
+            String sql = "delete from KinoBillett where id = ?";
+            jdbcTemplate.update(sql, id);
+        }
+        catch (Exception e)
+        {
+            System.out.println("SQL Delete failed with exception: "+e);
+        }
+    }
+
+
     // Deletes all registered KinoBillett in DB.
-    public void deleteAllKinoBileltt ()
+    public void deleteAllKinoBillett ()
     {
         try
         {

@@ -2,81 +2,22 @@
 <html lang="no">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Kino Home Page</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="kinoBillett.js"></script>
     <link rel="stylesheet"
           href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 
 </head>
-<body>
+<body style="background-color: dimgray">
 <header></header>
-<main>
-
-    <form id="kinoBillettForm" class="container">
-        <h1>Bestilling av kinobilletter</h1>
-        <br>
-
-        <label for="inputValgtFilm">Velg film</label>
-        <select id="inputValgtFilm">
-            <!---
-            <option>Pippi Langstrømpe 2: Dommedagen</option>
-            <option>Professor Cosmin og Cosmonautene</option>
-            <option>Oslo-Bergen med Bergensbanen 6t</option>
-            <option>Gamle damer som sparker fotball</option>
-            <option>Oslo-Bergen med den trans-Sibirske jernbane 238t</option>
-            <option>Subway Surfers Doom Scrolling 8t</option>
-            <option>Kristians 4-års bursdag (2002)</option>
-            -->
-        </select>
-
-
-        <!--- Input-felt for kontaktinfo legges inn i en tabell.-->
-        <table>
-            <tr>
-                <td><label for="inputAntall">Antall</label></td>
-                <td><input type="text" required id="inputAntall" style="width: 20%" pattern="^[0-9]{1,3}"
-                           title="Vennligst velg et gyldig antall billetter."></td>
-            </tr>
-            <tr>
-                <td><label for="inputFornavn">Fornavn</label></td>
-                <td><input type="text" required id="inputFornavn" pattern="[a-zæøåA-ZÆØÅ]{2,16}"
-                           title="Vennligst skriv et gyldig navn."></td></td>
-            </tr>
-            <tr>
-                <td><label for="inputEtternavn">Etternavn</label></td>
-                <td><input type="text" required id="inputEtternavn" pattern="[a-zæøåA-ZÆØÅ]{2,16}"
-                           title="Vennligst skriv et gyldig navn."></td>
-            </tr>
-            <tr>
-                <td><label for="inputTelefonnr">Telefonnr</label></td>
-                <td><input type="text" required id="inputTelefonnr" pattern="[0-9]{8}"
-                           title="Vennligst skriv et gyldig telefonnummer."></td>
-            </tr>
-            <tr>
-                <td><label for="inputEpost">Epost</label></td>
-                <td><input type="text" required id="inputEpost"
-                           pattern="[a-zæøåA-ZÆØÅ0-9._]+@[a-zæøåA-ZÆØÅ]{2,}.[a-zæøåA-ZÆØÅ]{2,}"
-                           title="Vennligst skriv en gyldig epost-adresse"></td>
-            </tr>
-        </table>
-        <button class="btn btn-primary" type="submit">Kjøp billett</button>
-    </form>
-
+<main class="container" style="background-color: white;">
+    <h1>Kino</h1>
     <br>
+    <h3>Filmer: </h3>
+    <!-- Div to be populated by film-options-->
+    <div id="filmButtons" class="flex-box"></div>
 
-    <div class="container">
-        <h2>Alle billetter</h2>
-
-        <!-- Bestile billetter legges til inn i tabellen med JavaScript-kode -->
-        <table class="table table-striped table-bordered" id="tableShowAlleFilmer">
-
-        </table>
-
-        <br>
-        <button class="btn btn-danger" onclick="deleteAllBilletterOnServer()">
-            Slett alle billetter</button>
-    </div>
 
 </main>
 

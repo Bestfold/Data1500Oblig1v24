@@ -8,11 +8,14 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 
-// Lager konstruktører og get-set-ere.
+// Can automaticly generate constructors and get- and set-methods using Lombok, but will not be
+// used in this oblig.
 //@NoArgsConstructor
 //@AllArgsConstructor
 //@Data
 
+// The following commented code is used for automatic table-creation,
+// but will not be used in this oblig.
 //@Entity
 //@Table(name="kinobillett")
 public class KinoBillett
@@ -32,7 +35,7 @@ public class KinoBillett
 
 
 
-    // Konstruktører for com.example.data1500oblig1v24.KinoBillett-objektet.
+    // Constructors
 
     public KinoBillett(){};
 
@@ -48,7 +51,7 @@ public class KinoBillett
     }
 
 
-    // Get- Set-metoder
+    // Get- Set-methods
 
 
     public long getId() {
@@ -101,7 +104,7 @@ public class KinoBillett
     }
 
 
-    // toString() for com.example.data1500oblig1v24.KinoBillett
+    // toString()
     @Override
     public String toString()
     {

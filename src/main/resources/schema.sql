@@ -11,5 +11,8 @@ create table KinoBillett
 
 create table AvailableFilms
 (
-                                     film varchar(255) primary key
+                                     film varchar(255) primary key,
+                                     titleSimple varchar(255),
+                                     hours int,
+                                     imageUrl varchar(255)
 );

@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-// REST-controller til å styre get- og post-mappings.
+// REST-controller to handle communication to and from server through mappings.
 @RestController
 public class KinoBillettController
 {
@@ -13,8 +13,7 @@ public class KinoBillettController
     @Autowired
     KinoBillettRepository kinoBillettRepository;
 
-    // Posts a KinoBillett to DB using repository method. @PostMapping is used here instead of
-    // @PutMapping, because of simplicity, as jQuery does not have a $.put function.
+    // Posts a KinoBillett to DB using repository method.
     @PostMapping("/postKinoBillett")
     public void opprettBillett (KinoBillett kinoBillett)
     {
@@ -30,12 +29,34 @@ public class KinoBillettController
         return kinoBillettRepository.findAllKinoBillett();
     }
 
+    // Gets KinoBillett based on id.
+    @GetMapping("/getBillettById")
+    public KinoBillett getBillettById (long id)
+    {
+        return kinoBillettRepository.findKinoBillettById(id);
+    }
+
+    // Puts KinoBillett to update on DB.
+    @PutMapping("/putBillettToDB")
+    public void putBillettToDB (@RequestBody KinoBillett editedBillett)
+    {
+        System.out.println("Put request, arg: "+editedBillett);
+        kinoBillettRepository.updateKinoBillett(editedBillett);
+    }
+
+
+    // Deletes single KinoBillett based on id.
+    @DeleteMapping("/deleteBillettById")
+    public void deleteBillettById (long id)
+    {
+        kinoBillettRepository.deleteKinoBillettById(id);
+    }
+
+
     // Deletes all saved elements in DB.
-    // GetMapping is used instead of DeleteMapping for simplicity as there is no premade
-    // AJAX request in jQuery. "$.delete" is not a function.
-    @GetMapping("/getDeleteAllRegistrerteBilletter")
+    @DeleteMapping("/deleteAllRegistrerteBilletter")
     public void deleteAllBilletter()
     {
-        kinoBillettRepository.deleteAllKinoBileltt();
+        kinoBillettRepository.deleteAllKinoBillett();
     }
 }
