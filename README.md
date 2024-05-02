@@ -4,6 +4,8 @@
 * GitHub Username: Bestfold
 * GitHub Repo URL: https://github.com/Bestfold/Data1500Oblig1v24.git
 * YouTube-link: https://youtu.be/6Iwz5-svc2s
+* Second YouTube-link at request of TA (showing only how the tickets are stored in DB)
+* :https://youtu.be/EH-QVTL8ObI
 * Name: Fredrik S Andersen
   
 ## Project:
